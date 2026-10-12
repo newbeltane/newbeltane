@@ -26,10 +26,10 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^4.3.3",
-    "tinacms": "^3.14.3"
+    "tinacms": "^3.14.4"
   },
   "devDependencies": {
-    "@tinacms/cli": "^4.0.1",
+    "@tinacms/cli": "^4.0.2",
     "@types/node": "^26.6.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
