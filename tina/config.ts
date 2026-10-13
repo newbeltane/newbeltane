@@ -46,7 +46,7 @@ export default defineConfig({
       },
       {
         name: "page",
-        label: "Pages",
+        label: "Site Pages",
         path: "src/content/pages",
         format: "md",
         fields: [
