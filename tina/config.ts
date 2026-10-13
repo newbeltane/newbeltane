@@ -26,7 +26,7 @@ export default defineConfig({
   schema: {
     collections: [
       {
-        name: "blog",
+        name: "post",
         label: "Blog Posts",
         path: "src/content/blog",
         format: "md",
@@ -70,6 +70,40 @@ export default defineConfig({
         ui: {
           router: ({ document }) => {
             return `/blog/${document._sys.filename.toLowerCase()}/`;
+          },
+        },
+      },
+      {
+        name: "page",
+        label: "Pages",
+        path: "src/content/pages",
+        format: "md",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+        ui: {
+          router: ({ document }) => {
+            if (document._sys.filename === "home" || document._sys.filename === "index") {
+              return "/";
+            }
+            return `/${document._sys.filename.toLowerCase()}/`;
           },
         },
       }
