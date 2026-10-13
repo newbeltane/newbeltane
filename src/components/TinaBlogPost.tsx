@@ -8,7 +8,7 @@ export default function TinaBlogPost(props: any) {
     data: props.data,
   });
 
-  const { title, description, pubDate, author, body, tags } = data.blog;
+  const { title, description, pubDate, author, body, tags } = data.post;
   
   const dateObj = new Date(pubDate);
   const formatted = !isNaN(dateObj.getTime())
@@ -26,21 +26,21 @@ export default function TinaBlogPost(props: any) {
             {formatted && author && <span aria-hidden="true"> • </span>}
             <span>{author}</span>
           </div>
-          <h1 className="post-title" style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem' }} data-tina-field={tinaField(data.blog, 'title')}>
+          <h1 className="post-title" style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem' }} data-tina-field={tinaField(data.post, 'title')}>
             {title}
           </h1>
-          <p className="post-desc" style={{ fontSize: '1.125rem', color: '#444', marginBottom: '1rem' }} data-tina-field={tinaField(data.blog, 'description')}>
+          <p className="post-desc" style={{ fontSize: '1.125rem', color: '#444', marginBottom: '1rem' }} data-tina-field={tinaField(data.post, 'description')}>
             {description}
           </p>
           
           {tags && tags.length > 0 && (
-            <ul className="tags" style={{ display: 'flex', gap: '0.5rem', listStyle: 'none', padding: 0 }} data-tina-field={tinaField(data.blog, 'tags')}>
+            <ul className="tags" style={{ display: 'flex', gap: '0.5rem', listStyle: 'none', padding: 0 }} data-tina-field={tinaField(data.post, 'tags')}>
               {tags.map((t: string) => <li key={t} style={{ background: '#eee', padding: '0.25rem 0.75rem', borderRadius: '4px', fontSize: '0.875rem' }}>{t}</li>)}
             </ul>
           )}
         </header>
         
-        <div className="prose max-w-none" data-tina-field={tinaField(data.blog, 'body')}>
+        <div className="prose max-w-none" data-tina-field={tinaField(data.post, 'body')}>
           <TinaMarkdown content={body} />
         </div>
       </div>
