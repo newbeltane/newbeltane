@@ -8,6 +8,11 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import { services } from '../data/services';
 
+// Import Tina Client and your new React component
+import client from '../../tina/__generated__/client';
+import TinaHomePage from '../components/TinaHomePage';
+
+// 1. Fetch Blog Posts
 function getSlug(post: CollectionEntry<'blog'>) {
   const rawSlug = 'slug' in post ? post.slug : post.id;
   return typeof rawSlug === 'string' ? rawSlug.replace(/\.(md|mdx)$/, '') : String(rawSlug);
@@ -20,6 +25,19 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     return dateB - dateA;
   })
   .slice(0, 3);
+
+// 2. Fetch TinaCMS Page Data
+let pageResponse;
+try {
+  pageResponse = await client.queries.page({ relativePath: 'home.md' });
+} catch (error) {
+  try {
+    pageResponse = await client.queries.page({ relativePath: 'index.md' });
+  } catch (e) {
+    console.warn("TinaCMS: Could not find home.md or index.md");
+  }
+}
+const pageData = pageResponse?.data?.page;
 
 const usps = [
   {
@@ -40,8 +58,17 @@ const usps = [
 ];
 ---
 
-<BaseLayout title="Home" description="Digital services and fast web development">
+<BaseLayout 
+  title={pageData?.title || "Home"} 
+  description={pageData?.description || "Digital services and fast web development"}
+>
   <Hero />
+  
+  <!-- Editable TinaCMS Intro Content -->
+  {pageResponse && (
+    <TinaHomePage client:load {...pageResponse} />
+  )}
+
   <StatBar />
 
   <!-- Services -->
