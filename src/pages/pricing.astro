@@ -1,87 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import client from '../../tina/__generated__/client';
+import TinaPricingPage from '../components/TinaPricingPage';
 
-const pricingTiers = [
-  {
-    name: 'Landing Page',
-    price: '£299',
-    description: 'Perfect for campaigns, coming soon pages, or single-service promotions.',
-    features: ['One-page design', 'Mobile responsive', 'Contact form', 'Basic SEO setup', 'Cloudflare Hosting Setup'],
-    cta: 'Get Started'
-  },
-  {
-    name: 'Multi-page site',
-    price: '£499',
-    description: 'A complete multi-page website to establish your brand online.',
-    features: ['Up to 5 pages', 'Custom design', 'CMS integration', 'Advanced SEO', 'Lightning fast performance', 'Cloudflare Hosting Setup'],
-    highlight: true,
-    cta: 'Get Started'
-  },
-  {
-    name: 'Custom Web App',
-    price: 'Custom',
-    description: 'Complex data-driven sites, portals, or bespoke digital products.',
-    features: ['Bespoke functionality', 'Database integration', 'User authentication', 'API connections', 'Scalable architecture'],
-    cta: 'Let\'s Talk'
-  },
-  {
-    name: 'Site Maintenance',
-    price: '£49/mo',
-    description: 'Peace of mind with ongoing support, proactive monitoring, and minor updates.',
-    features: ['24/7 uptime monitoring', 'Monthly security checks', 'Up to 1 hour of minor updates', 'Priority email support', 'Rolling 30-day contract'],
-    cta: 'Subscribe'
-  }
-];
+let pageResponse;
+try {
+  pageResponse = await client.queries.page({ relativePath: 'pricing.md' });
+} catch (e) {
+  console.warn("TinaCMS: Could not find pricing.md");
+}
+const pageData = pageResponse?.data?.page;
 ---
 
-<BaseLayout title="Pricing | Newbeltane Tech" description="Transparent, fixed-price web development services.">
-  <section class="section-sm page-hero">
-    <div class="container">
-      <div class="text-center" style="text-align: center;">
-        <span class="eyebrow">Pricing</span>
-        <h1 class="page-title">Honest pricing, <span class="text-gradient">no surprises</span>.</h1>
-        <p class="lead" style="max-width: 60ch; margin: 0 auto;">
-          Fixed quotes and plain English. Choose a package below or request a custom quote tailored exactly to your needs.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="pricing-flex-grid">
-        {pricingTiers.map((tier) => (
-          <div class={`card pricing-card ${tier.highlight ? 'highlight' : ''}`}>
-            <h2 class="tier-name">{tier.name}</h2>
-            <div class="tier-price">{tier.price}</div>
-            <p class="tier-desc">{tier.description}</p>
-            <ul class="tier-features">
-              {tier.features.map((feature) => (
-                <li>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="check-icon"><path d="M20 6L9 17l-5-5"/></svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <a href="/quote/" class="btn btn-primary">{tier.cta}</a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="ad-hoc-box">
-        <h3>Need more time?</h3>
-        <p>If you need more involved updates beyond the 1-hour monthly allowance—such as designing new pages, writing copy, or adding complex features—additional development is billed at a simple rate of <strong>£49 per hour</strong>.</p>
-        <p>For larger additions, I am always happy to provide a fixed-price quote upfront so you know exactly what to expect before work begins.</p>
-      </div>
-    </div>
-  </section>
+<BaseLayout 
+  title={pageData?.title || "Pricing | Newbeltane Tech"} 
+  description={pageData?.description || "Transparent, fixed-price web development services."}
+>
+  {pageResponse ? (
+    <TinaPricingPage client:load {...pageResponse} />
+  ) : (
+    <p style="text-align:center; padding: 4rem;">Error loading pricing data. Please create pricing.md in CMS.</p>
+  )}
 </BaseLayout>
 
-<style>
+<style is:global>
   .page-hero { padding-top: clamp(2.5rem, 6vw, 4rem); }
   .page-title { font-size: var(--fs-3xl); margin: 0.75rem 0 1.25rem; }
   .lead { font-size: var(--fs-lg); color: var(--text-secondary); margin-bottom: 2rem; }
