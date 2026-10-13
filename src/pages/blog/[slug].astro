@@ -4,8 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TinaBlogPost from '../../components/TinaBlogPost';
 
 export async function getStaticPaths() {
-  const { data } = await client.queries.blogConnection();
-  const posts = data.blogConnection.edges || [];
+  const { data } = await client.queries.postConnection();
+  const posts = data.postConnection.edges || [];
 
   return posts.map((edge) => {
     const post = edge?.node;
@@ -17,8 +17,8 @@ export async function getStaticPaths() {
 }
 
 const { relativePath } = Astro.props;
-const response = await client.queries.blog({ relativePath: relativePath as string });
-const { title, description } = response.data.blog;
+const response = await client.queries.post({ relativePath: relativePath as string });
+const { title, description } = response.data.post;
 ---
 
 <BaseLayout title={title || ''} description={description || ''}>
