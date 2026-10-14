@@ -6,7 +6,7 @@ intro: 'Fixed quotes and plain English. Choose a package below or request a cust
 pricingTiers:
   - name: Landing Page
     price: £299
-    description: 'Perfect for campaigns, coming soon pages, or single-service promotions.'
+    description: 'Perfect for campaigns, coming soon pages, or single-service promotions. Choose from various themes that are then made bespoke for your needs.'
     features:
       - One-page design
       - Mobile responsive
