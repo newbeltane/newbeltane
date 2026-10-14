@@ -15,7 +15,7 @@ const seoDescription = pageData.seoDescription || "Fast, reliable web developmen
 ---
 
 <BaseLayout title={seoTitle} description={seoDescription}>
-  <AboutPage client:tina {...(response as any)} />
+<AboutPage client:load {...(response as any)} />
 </BaseLayout>
 
 <style is:global>
