@@ -1,31 +1,48 @@
 ---
-title: "About Me"
-description: "Learn more about Steven Dale and his freelance web development services."
-body: |
-  Hi, I'm Steven Dale. I'm a freelance web developer based in the UK, specializing in building blazing-fast, modern websites that help businesses grow.
-
-  ## My Story
-
-  I started my journey in web development over 10 years ago, and since then I've had the privilege of working with clients from all over the world. My passion is creating websites that not only look great but also perform incredibly fast.
-
-  ## What I Do
-
-  I specialize in:
-  - **Astro Websites** - Blazing-fast static sites that load instantly
-  - **Cloudflare Hosting** - Fast, reliable, and affordable hosting
-  - **Custom Development** - Tailored solutions for your unique needs
-  - **Ongoing Support** - I'm always here to help when you need me
-
-  ## Why Choose Me?
-
-  - **Fast Turnaround** - I understand that time is money
-  - **Transparent Pricing** - No hidden costs, no surprises
-  - **Quality Code** - Clean, maintainable, and modern
-  - **Personal Service** - You're not just a ticket number to me
-
-  ## Let's Work Together
-
-  Whether you need a new website, a redesign, or ongoing support, I'd love to hear about your project. Let's create something amazing together!
-
-  Feel free to reach out via email or contact form, and let's get started on your next project.
+_template: about
+seoTitle: About | Newbeltane Tech
+seoDescription: Fast, reliable web development and consulting services.
+eyebrow: About Newbeltane Tech
+heroTitle: Hi, I build <span class="text-gradient">fast websites</span> for good people.
+heroLead1: >-
+  I'm a freelance web designer and developer. I help small businesses,
+  charities, and individuals get online with websites that are genuinely fast,
+  secure, and easy to find on Google.
+heroLead2: >-
+  I specialise in a modern approach: static sites built with
+  <strong>Astro</strong> and deployed to <strong>Cloudflare's</strong> global
+  edge network.
+avatarImage: /me.webp
+avatarName: Steven Dale
+avatarRole: Freelance Web Designer & Developer
+techStack:
+  - Astro
+  - Cloudflare
+  - TypeScript
+  - HTML5
+  - CSS3
+  - JavaScript
+  - Git
+  - Figma
+  - Markdown
+  - SEO
+values:
+  - title: Performance first
+    body: >-
+      I treat speed as a feature, not an optional extra. Every decision is
+      weighed against its impact on load time.
+  - title: Honest & transparent
+    body: >-
+      Fixed quotes, plain English and no jargon. You always know what you’re
+      getting and what it costs.
+  - title: Built to last
+    body: >-
+      Clean, standards-based code with no plugin bloat — so your site stays
+      fast, secure and easy to maintain.
+  - title: A real partnership
+    body: >-
+      I work with small teams as if I’m part of them, learning your goals and
+      building for the long term.
+ctaHeadline: Let's build something fast together.
+ctaSubtext: Get in touch and I'll reply within one working day.
 ---

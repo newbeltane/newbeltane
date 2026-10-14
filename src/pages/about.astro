@@ -1,98 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutPage from '../components/AboutPage';
+import client from "../../tina/__generated__/client";
 
-const stack = ['Astro', 'Cloudflare', 'TypeScript', 'HTML5', 'CSS3', 'JavaScript', 'Git', 'Figma', 'Markdown', 'SEO'];
+const response = await client.queries.page({
+  relativePath: "about.md",
+});
 
-const values = [
-  {
-    title: 'Performance first',
-    body: 'I treat speed as a feature, not an optional extra. Every decision is weighed against its impact on load time.',
-  },
-  {
-    title: 'Honest & transparent',
-    body: 'Fixed quotes, plain English and no jargon. You always know what you’re getting and what it costs.',
-  },
-  {
-    title: 'Built to last',
-    body: 'Clean, standards-based code with no plugin bloat — so your site stays fast, secure and easy to maintain.',
-  },
-  {
-    title: 'A real partnership',
-    body: 'I work with small teams as if I’m part of them, learning your goals and building for the long term.',
-  },
-];
+// We use 'as any' to bypass TypeScript's strict template checking
+const pageData = response.data.page as any;
+
+const seoTitle = pageData.seoTitle || "About | Newbeltane Tech";
+const seoDescription = pageData.seoDescription || "Fast, reliable web development and consulting services.";
 ---
 
-<BaseLayout title="About | Newbeltane Tech" description="Fast, reliable web development and consulting services.">
-  <section class="section-sm page-hero">
-    <div class="container about-intro">
-      
-      <div>
-        <span class="eyebrow">About Newbeltane Tech</span>
-        <h1 class="page-title">Hi, I build <span class="text-gradient">fast websites</span> for good people.</h1>
-        <p class="lead">
-          I'm a freelance web designer and developer. I help small businesses, charities, and individuals get online with websites that are genuinely fast, secure, and easy to find on Google.
-        </p>
-        <p class="lead">
-          I specialise in a modern approach: static sites built with <strong>Astro</strong> and deployed to <strong>Cloudflare's</strong> global edge network.
-        </p>
-      </div>
-
-      <div class="intro-visual" aria-hidden="true">
-        <div class="avatar-card card">
-          <img src="/me.webp" alt="Steven Dale" class="avatar-photo" />
-          <p class="avatar-name">Steven Dale</p>
-          <p class="avatar-role">Freelance Web Designer &amp; Developer</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech stack -->
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Tech stack</span>
-        <h2 class="section-title">Tools I build with</h2>
-      </div>
-      <ul class="stack">
-        {stack.map((t) => <li class="stack-badge">{t}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <!-- Values -->
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">How I work</span>
-        <h2 class="section-title">What you can expect</h2>
-      </div>
-      <div class="grid grid-2">
-        {values.map((v) => (
-          <article class="card value">
-            <h3>{v.title}</h3>
-            <p>{v.body}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="cta-banner">
-        <div>
-          <h2>Let's build something fast together.</h2>
-          <p>Get in touch and I'll reply within one working day.</p>
-        </div>
-        <a href="/quote/" class="btn btn-primary">Get a Quote <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
+<BaseLayout title={seoTitle} description={seoDescription}>
+  <AboutPage client:tina {...(response as any)} />
 </BaseLayout>
 
-<style>
+<style is:global>
   .page-hero { padding-top: clamp(2.5rem, 6vw, 4rem); }
   .about-intro { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
   .page-title { font-size: var(--fs-3xl); margin: 0.75rem 0 1.25rem; }
