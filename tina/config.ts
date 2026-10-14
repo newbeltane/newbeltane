@@ -23,6 +23,19 @@ export default defineConfig({
   schema: {
     collections: [
       {
+        name: "post",
+        label: "Blog Posts",
+        path: "src/content/blog",
+        format: "md",
+        fields: [
+          { type: "string", name: "title", label: "Title", isTitle: true, required: true },
+          { type: "string", name: "description", label: "Description" },
+          { type: "datetime", name: "pubDate", label: "Publish Date" },
+          { type: "image", name: "heroImage", label: "Hero Image" },
+          { type: "rich-text", name: "body", label: "Body", isBody: true },
+        ],
+      },
+      {
         name: "page",
         label: "Site Pages",
         path: "src/content/pages",
@@ -46,7 +59,7 @@ export default defineConfig({
               { type: "string", name: "title", label: "Title (SEO)" },
               { type: "string", name: "description", label: "Description (SEO)" },
               { type: "string", name: "headline", label: "Headline (HTML allowed)" },
-              { type: "string", name: "introductoryText", label: "Introductory Text", ui: { component: "textarea" } },
+              { type: "string", name: "intro", label: "Introductory Text", ui: { component: "textarea" } },
               {
                 type: "object",
                 name: "pricingTiers",
@@ -58,7 +71,8 @@ export default defineConfig({
                   { type: "string", name: "price", label: "Price" },
                   { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
                   { type: "string", name: "features", label: "Features", list: true },
-                  { type: "boolean", name: "highlighted", label: "Highlight Tier" },
+                  { type: "boolean", name: "highlight", label: "Highlight Tier" },
+                  { type: "string", name: "cta", label: "Button Text" },
                 ],
               },
               {
@@ -66,9 +80,8 @@ export default defineConfig({
                 name: "adHoc",
                 label: "Ad-Hoc / Custom Work Block",
                 fields: [
-                  { type: "string", name: "headline", label: "Headline" },
-                  { type: "string", name: "rate", label: "Hourly / Daily Rate" },
-                  { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
+                  { type: "string", name: "title", label: "Title" },
+                  { type: "string", name: "content", label: "Content (HTML allowed)", ui: { component: "textarea" } },
                 ],
               },
             ],
