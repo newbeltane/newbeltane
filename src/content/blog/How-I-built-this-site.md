@@ -1,11 +1,11 @@
 ---
+author: Steven Dale
 title: How I built this site
 description: 'A brief description of how I built this site and some of the hurdles I had to overcome. Hopefully, this will be of help to others, who like me are vibe coding with Astro/VS Code/GitHub/Cloudflare and Tina CMS.'
-author: Steven Dale
 pubDate: 2026-10-08T00:00:00.000Z
 ---
 
-For many years I built websites with WordPress and in the last few used DIVI from Elegant Themes. I even have a lifetime licence for DIVI. However, due a recent issue with my shared hosting plan and WordPress getting hacked, I decided it was time to move on. 
+For many years I built websites with WordPress and in the last few used DIVI from Elegant Themes. I even have a lifetime licence for DIVI. However, due a recent issue with my shared hosting plan and WordPress getting hacked, I decided it was time to move on.
 
 I explored the options, played around with various approaches but in the end I settled on building with Astro. Pretty soon it was clear that the best way was to use Astro, together with GitHub, Cloudflare and TinaCMS.
 
@@ -37,4 +37,4 @@ So there you have it, my site is now up and running and with a free account at W
 
 There is still much to learn and I am now starting a free course on building with Astro, so I can learn how to make my Astro sites even better. In the meantime, checkout the PageSpeed results for my new site below.
 
-[https://pagespeed.web.dev/analysis/https-newbeltane-co-uk/74sz5nnzd4?form\_factor=mobile](https://pagespeed.web.dev/analysis/https-newbeltane-co-uk/74sz5nnzd4?form_factor=mobile)
+![](/uploads/PageSpeed.jpg)
