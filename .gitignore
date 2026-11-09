@@ -27,3 +27,5 @@ npm-debug.log*
 .github/workflows/tinacms.yml
 node_modules
 tina/__generated__
+.morrisson/trash/
+.morrisson/history/
